@@ -1,0 +1,59 @@
+    {% extends "base.html" %}
+    {% block content %}
+
+    <div class="albums">
+      <img alt="Open" 
+           id="simple-menu" 
+           class="icon-menu" 
+           src="https://content.codecademy.com/projects/z2d/stories/menu-black.svg" />
+        
+      <div class="pop-up container">
+        {% for message in get_flashed_messages() %}
+        <div class="alert">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>
+        
+      <div class="container">
+        <div class="row">
+        
+          {% for album in albums %}
+          <div class="item">
+            <div class="img-container">
+              <img src="{{ album.image }}" />
+            </div>
+            <div class="album-info">
+              <h2>{{ album.title }}</h2>
+
+              {% if current_user.id != album.user_id %}
+              <p>
+                <a href="{{ url_for('photos', username=current_user.username, album_id=album.id) }}">Photos</a>
+              </p>
+              {% else %}
+              <p>
+                <a href="{{ url_for('photos', username=current_user.username, album_id=album.id) }}">Photos</a> |
+                <a href="{{ url_for('delete_album', username=current_user.username, album_id=album.id) }}">Delete Album</a>
+              </p>
+              {% endif %}
+
+            </div>
+          </div>
+          {% endfor %}
+            
+          <div class="item">
+            <div class="img-container">
+              <img src="https://content.codecademy.com/courses/rails-auth/img/fotofoto-logo.svg" />
+            </div>
+            <div class="album-info">
+              <h2>New Album</h2>
+              <p><a href="{{ url_for('post_album', username=current_user.username) }}">Create</a></p>
+            </div>
+          </div>
+            
+        </div>
+      </div>
+    </div>
+          
+    {% endblock %}

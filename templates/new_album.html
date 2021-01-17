@@ -1,0 +1,40 @@
+    {% extends "base.html" %}
+    {% block content %}
+
+    <div id="album-new" class="form-page contact-main small">
+      <img alt="Open" 
+           id="simple-menu" 
+           class="icon-menu" 
+           src="https://content.codecademy.com/projects/z2d/stories/menu-white.svg" />
+        
+      <div class="pop-up container">
+        {% for message in get_flashed_messages() %}
+        <div class="alert">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>  
+        
+      <div class="container"> 
+        <h1>New album</h1> 
+        <div class="form form-column">
+        
+          <form class="form-section" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+              Album name<br>
+              {{ form.title(size=32) }}<br>
+            </p>
+            <p>
+              Cover image URL<br>
+              {{ form.image(size=32) }}<br>
+            </p>
+            <p>{{ form.submit() }}</p>
+          </form>
+            
+        </div>      
+      </div>
+    </div>
+                
+    {% endblock %}

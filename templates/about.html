@@ -1,0 +1,42 @@
+    {% extends "base.html" %}
+    {% block content %}
+
+    <div class="about-main"> 
+      <img alt="Open" 
+           id="simple-menu" 
+           class="icon-menu" 
+           src="https://content.codecademy.com/projects/z2d/stories/menu-white.svg" />
+        
+      <div class="pop-up container">
+        {% for message in get_flashed_messages() %}
+        <div class="alert">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>  
+      
+      <div class="content container"> 
+        <h1>Relive your favorite memories</h1>
+      </div>
+    </div>
+
+    <div class="about-supporting">
+      <div class="container">
+        <h2>No more sorting through photos</h2>
+        <p class="description">Storeo automatically finds your best photos and creates a new travelogue. This way you can capture and share your special moments in fresh new ways.</p>
+          
+          {% if current_user.is_anonymous %}
+          <p class="btn btn-primary button">
+            <a href="{{ url_for('register') }}">Sign up</a>
+          </p>
+          {% else %}
+          <p class="btn btn-primary button">
+            <a href="{{ url_for('albums', username=current_user.username) }}">Start</a>
+          </p>
+          {% endif %}
+
+      </div>
+    </div>
+              
+    {% endblock %}

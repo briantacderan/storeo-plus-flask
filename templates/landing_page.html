@@ -1,0 +1,54 @@
+    {% extends "base.html" %}
+    {% block content %}
+
+    <div class="home-main">
+        
+      <img alt="Open" 
+           id="simple-menu" 
+           class="icon-menu" 
+           src="https://content.codecademy.com/projects/z2d/stories/menu-white.svg" />
+      <div class="pop-up container">
+        {% for message in get_flashed_messages() %}
+        <div class="alert">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {{ message }}
+        </div>
+        {% endfor %}
+      </div>  
+      <div class="container">
+        <div class="row">
+          <div class="blank">
+          </div>
+          <div class="content">
+            <h1>Create and share Storeos</h1>
+            <p class="btn btn-primary">
+              <a href="{{ url_for('about') }}">Learn more</a>
+            </p>
+          </div>
+        </div>
+      </div>
+        
+    </div>
+
+    <div class="home-supporting">
+      <div class="container">
+        <h2>Relive and share your adventures</h2>
+        <p>Storeo automatically creates a digital journal filled with only your best journals.</p>
+      </div>
+    </div>
+
+    <div class="home-secondary">
+      <div class="container">
+      </div>
+    </div>
+
+    <div class="home-about">
+      <div class="container">
+        <h2>Discover Storeo</h2>
+        <p class="btn btn-primary">
+          <a href="{{ url_for('about') }}">Learn more</a>
+        </p>
+      </div>
+    </div>
+
+    {% endblock %}
